@@ -1,5 +1,12 @@
 package main
 
+import (
+	"fmt"
+	"github.com/beevik/ntp"
+	"log"
+	"time"
+)
+
 /*
 === Базовая задача ===
 
@@ -12,6 +19,18 @@ package main
 Программа должна проходить проверки go vet и golint.
 */
 
-func main() {
+func GetPreciseTime(host string) (time.Time, error) {
+	t, err := ntp.Time(host)
+	if err != nil {
+		return t, err
+	}
+	return t, nil
+}
 
+func main() {
+	cur, err := GetPreciseTime("0.beevik-ntp.pool.ntp.org")
+	if err != nil {
+		log.Fatalf("%v\nLocal time: %v\n", err, cur.Format(time.UnixDate))
+	}
+	fmt.Println(cur.Format(time.UnixDate))
 }
