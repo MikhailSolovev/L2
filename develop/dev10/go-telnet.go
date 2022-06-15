@@ -87,7 +87,7 @@ func (t *TelnetClient) goClientWriter() (err error) {
 		switch err {
 		case nil:
 			fmt.Printf("%s", serverResponse)
-		// Сервер закрыл соединение CTRL+D
+		// Сервер закрыл соединение CTRL+C
 		case io.EOF:
 			return err
 		default:
