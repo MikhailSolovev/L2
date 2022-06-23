@@ -52,7 +52,7 @@ func (h *Handler) CreateEvent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	event.Date, err = time.Parse("2019-09-09", parseJSON["date"])
+	event.Date, err = time.Parse("2006-02-02", parseJSON["date"])
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(`{"error": "bad request - incorrect date"}`))
@@ -95,7 +95,7 @@ func (h *Handler) UpdateEvent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	event.Date, err = time.Parse("2019-09-09", parseJSON["date"])
+	event.Date, err = time.Parse("2006-02-02", parseJSON["date"])
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(`{"error": "bad request - incorrect date"}`))
@@ -160,9 +160,9 @@ func (h *Handler) EventsPerDay(w http.ResponseWriter, r *http.Request) {
 	}
 
 	param := r.URL.Query()
-	dateStr := param.Get("data")
+	dateStr := param.Get("date")
 
-	date, err := time.Parse("2019-09-09", dateStr)
+	date, err := time.Parse("2006-02-02", dateStr)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(`{"error": "bad request - incorrect date"}`))
@@ -206,9 +206,9 @@ func (h *Handler) EventsPerWeek(w http.ResponseWriter, r *http.Request) {
 	}
 
 	param := r.URL.Query()
-	dateStr := param.Get("data")
+	dateStr := param.Get("date")
 
-	date, err := time.Parse("2019-09-09", dateStr)
+	date, err := time.Parse("2006-02-02", dateStr)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(`{"error": "bad request - incorrect date"}`))
@@ -252,9 +252,9 @@ func (h *Handler) EventsPerMonth(w http.ResponseWriter, r *http.Request) {
 	}
 
 	param := r.URL.Query()
-	dateStr := param.Get("data")
+	dateStr := param.Get("date")
 
-	date, err := time.Parse("2019-09-09", dateStr)
+	date, err := time.Parse("2006-02-02", dateStr)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(`{"error": "bad request - incorrect date"}`))
